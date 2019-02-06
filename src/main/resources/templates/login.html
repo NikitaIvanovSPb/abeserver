@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/head :: head ('Вход')"></div>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="display-1 text-center">ABE SERVER</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">Вход</h1>
+        </div>
+    </div>
+</div>
+<!--/*@thymesVar id="loginForm" type="ru.nikita.ctfzone.domain.dao.LoginUserDao"*/-->
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <!--<form th:object="${loginForm}" th:action="@{/login/}" method="post">-->
+                <div th:if="${error}" class="alert alert-danger" role="alert">Неправильное имя пользователя или пароль</div>
+                <div th:if="${logout}" class="alert alert-info" role="alert">Вы успешно вышли из системы</div>
+                <div th:if="${reg}" class="alert alert-success" role="alert">Вы успешно зарегистрированы, выполните вход для продолжения</div>
+            <form th:action="@{/login}" method="post">
+                <div class="panel-group">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <!--<h1 class="panel-title">Заполните форму регистрации</h1>-->
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label>Логин</label>
+                                    <input type="text" class="form-control" name="username" aria-describedby="helpBlockLogin">
+                                    <!--<input type="text" class="form-control" th:field="*{login}" aria-describedby="helpBlockLogin">-->
+                                    <!--<span id="helpBlockLogin" class="help-block alert-danger" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>-->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label>Пароль</label>
+                                    <input type="password" class="form-control" name="password" aria-describedby="helpBlockPassword">
+                                    <!--<input type="password" class="form-control" th:field="*{password}" aria-describedby="helpBlockPassword">-->
+                                    <!--<span id="helpBlockPassword" class="help-block alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>-->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <button type="submit" class="btn btn-primary">Войти</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>

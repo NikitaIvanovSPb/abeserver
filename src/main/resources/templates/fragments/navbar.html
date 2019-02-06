@@ -1,0 +1,37 @@
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="navbar (unauthorized, isAdmin, username)">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" th:href="@{/}">CTF_ZONE</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div th:if="${unauthorized} == false" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a th:href="@{/tasks}">Доступные задания</a></li>
+                    <li><a th:href="@{/flag/}">Зарегистрировать флаг</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown" th:if="${isAdmin}">
+                        <!--<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Администрирование<span class="caret"></span></button>-->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Администрирование<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/admin/users}">Управление пользователями</a></li>
+                            <li><a th:href="@{/admin/tasks}">Управление заданиями</a></li>
+                        </ul>
+                    </li>
+                    <li><a th:text="${username}"></a></li>
+                    <li><a th:href="@{/logout}">Выход</a></li>
+                </ul>
+            </div>
+            <div th:if="${unauthorized} == true" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a th:href="@{/login}">Вход</a></li>
+                    <li><a th:href="@{/registration}">Регистрация</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
